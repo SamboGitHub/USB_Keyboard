@@ -4,8 +4,15 @@
 
 struct pinmapping {int pin; int key;};
 
-pinmapping pintable[] = {{2,97},{3,98}};
+//pintable[i].run(Keyboard)
 
+//pintable::run(*keyboard type from .h* * keyboard_instance)   i is var in the run:
+
+
+// Map buttons to to 0-9,A-B
+pinmapping pintable[] = {{2,48},{3,49},{4,50},{5,51},{6,52},{7,53},{8,54},{9,55},{10,56},{14,57},{15,65},{16,66}};
+
+//pass in Keyboard object when you call the run method
 
 const int pintablesize = sizeof(pintable)/sizeof(pintable[0]);
 
