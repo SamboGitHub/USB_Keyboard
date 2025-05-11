@@ -17,13 +17,13 @@ private:
     int key;
     int button_state_val;
     int prev_button_state_val;
-    
+    const long unsigned key_down_debounce = 10;
+    const long unsigned key_up_debounce = 10;
     enum key_state
     {
       Idle,
-      KeyDown,
-      KeyDown_Waiting_Response,
-
+      KeyDown_Start,
+      KeyDown_End
     };
     key_state state;
     //state/
