@@ -1,26 +1,17 @@
 #include <Arduino.h>
-
 #include <Keyboard.h>
 
-struct pinmapping {int pin; int key;};
+#include "PinMapping.h"
 
-//pintable[i].run(Keyboard)
-
-//pintable::run(*keyboard type from .h* * keyboard_instance)   i is var in the run:
-
+//struct pinmapping {int pin; int key;};
 
 // Map buttons to to 0-9,A-B
-pinmapping pintable[] = {{2,48},{3,49},{4,50},{5,51},{6,52},{7,53},{8,54},{9,55},{10,56},{14,57},{15,65},{16,66}};
-
-//pass in Keyboard object when you call the run method
+//pinmapping pintable[] = {{2,48},{3,49},{4,50},{5,51},{6,52},{7,53},{8,54},{9,55},{10,56},{14,57},{15,65},{16,66}};
+PinMapping pintable[] = {{2,48},{3,49},{4,50},{5,51},{6,52},{7,53},{8,54},{9,55},{10,56},{14,57},{15,65},{16,66}};
 
 const int pintablesize = sizeof(pintable)/sizeof(pintable[0]);
 
-// for (i,i++,i< pintablesize){
 
-
-
-// }
 
 //declaring button pins
 const int buttonPin = 2;          
@@ -31,9 +22,28 @@ void setup() {
   //declare the buttons as input_pullup
   pinMode(buttonPin, INPUT_PULLUP);  
   Keyboard.begin();
+
+  
 }
 
 void loop() {
+
+
+//pass in Keyboard object when you call the run method
+
+
+
+for (int i=0; i< pintablesize; i++)
+
+{
+
+pintable[i].run(Keyboard);
+//pintable::run(*keyboard type from .h* * keyboard_instance)   i is var in the run:
+
+};
+
+
+
   //checking the state of the button
   int buttonState = digitalRead(buttonPin);
   
