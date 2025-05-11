@@ -20,7 +20,11 @@ int previousButtonState = HIGH;
 
 void setup() {
   //declare the buttons as input_pullup
-  pinMode(buttonPin, INPUT_PULLUP);  
+for (int i=0; i<pintablesize; i++)
+  {
+      pintable[i].init();  
+  };
+
   Keyboard.begin();
 
   
@@ -44,22 +48,22 @@ pintable[i].run(Keyboard);
 
 
 
-  //checking the state of the button
-  int buttonState = digitalRead(buttonPin);
+//   //checking the state of the button
+//   int buttonState = digitalRead(buttonPin);
   
- //replaces button press with UP arrow
-  if (buttonState == LOW && previousButtonState == HIGH) {
-      // and it's currently pressed:
-    Keyboard.press(97);
-    delay(50);
-  }
+//  //replaces button press with UP arrow
+//   if (buttonState == LOW && previousButtonState == HIGH) {
+//       // and it's currently pressed:
+//     Keyboard.press(97);
+//     delay(50);
+//   }
 
-  if (buttonState == HIGH && previousButtonState == LOW) {
-      // and it's currently released:
-    Keyboard.release(97);
-    delay(50);
-  }
+//   if (buttonState == HIGH && previousButtonState == LOW) {
+//       // and it's currently released:
+//     Keyboard.release(97);
+//     delay(50);
+//   }
  
-  previousButtonState = buttonState;
+//   previousButtonState = buttonState;
 
 }
