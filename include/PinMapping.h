@@ -1,5 +1,5 @@
-#ifndef KEY_PRESSER
-#define KEY_PRESSER = 1
+#ifndef PIN_MAPPING
+#define PIN_MAPPING = 1
 
 
 class Keyboard_; //feex point to real
@@ -23,7 +23,9 @@ private:
     {
       Idle,
       KeyDown_Start,
-      KeyDown_End
+      KeyDown_End,
+      KeyUp_Start,
+      KeyUp_End
     };
     key_state state;
     //state/

@@ -16,7 +16,7 @@ void PinMapping::run(Keyboard_ &keyboard_out)
     button_state_val = digitalRead(pin);
     
     //replaces button press with UP arrow
-    if (button_state_val == LOW && prev_button_state_val == HIGH)
+    if (button_state_val == LOW && state ==  Idle)
         {
             // and it's currently pressed:
             keyboard_out.press(key);
@@ -28,20 +28,33 @@ void PinMapping::run(Keyboard_ &keyboard_out)
             //         state = Idle;
             //     }
         }
-    if (button_state_val == HIGH && prev_button_state_val == LOW)
+    
+    if (state == KeyDown_Start and millis()> start_time + key_down_debounce)
+    {
+        state = KeyDown_End;
+    }
+    
+    
+    if (button_state_val == HIGH && state ==  KeyDown_End)
     {
         // and it's currently released:
         keyboard_out.release(key);
-        state = KeyDown_End;
+        state = KeyUp_Start;
         start_time = millis();
-        // if (state == KeyDown_End and millis() >= start_time + key_up_debounce)
-        // {
-        //     state = Idle;
-        // };
-            // delay(50);
+
+            // if (state == KeyDown_Start and millis() >= start_time + key_down_debounce)
+            //     {
+            //         state = Idle;
+            //     }
+        }
+    
+    if (state == KeyUp_Start and millis()> start_time + key_up_debounce)
+    {
+        state = Idle;
     }
-    ;
-    prev_button_state_val = button_state_val;
+
+
+
 
 }
 
